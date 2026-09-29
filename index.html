@@ -73,7 +73,7 @@
           ["Div. B National Tournament Schedule", 79]
       ];
       for (let content of toc) {
-        $("nav").append($("<button>").addClass("btn btn-light btn-sm doc-tab").text(toc[0]).attr("data-page", String(toc[1])));
+        $("nav").append($("<button>").addClass("btn btn-light btn-sm doc-tab").text(content[0]).attr("data-page", String(content[1])));
       }
       $(".doc-tab").click(async function() {
           const page = $(this).data("page");
