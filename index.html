@@ -8,9 +8,18 @@
       button {
         display: inline !important;
       }
+      iframe {
+        max-height: calc(99% - 38px);
+      }
       nav {
-        overflow: scroll;
-        max-height: 5%;
+        height: 38px;
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      button {
+        flex: 0 0 auto;
       }
       body {
         background: black;
