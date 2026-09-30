@@ -31,11 +31,11 @@ See https://github.com/adobe-type-tools/cmap-resources
         white-space: nowrap;
       }
 
-      #toc .btn {
+      .doc-tab {
         flex: 0 0 auto;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        border: 1px solid black;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        border: 1px solid var(--body-bg-color);
       }
 
       #editorSettingsButton::before {
@@ -66,11 +66,21 @@ See https://github.com/adobe-type-tools/cmap-resources
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            ...
+            <div class="accordion" id="settings_acc">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#favorites" aria-expanded="false" aria-controls="collapseOne">SHOW/HIDE TABS<span style="opacity: 0;">,</span><strong>OR ELSE</strong></button>
+                </h2>
+                <div id="favorites" class="accordion-collapse collapse show" data-bs-parent="#settings_acc">
+                  <div class="accordion-body" id="checks-goes">
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Understood</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE <strong>OR ELSE</strong></button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="close-settings">SAVE, CLOSE, AND REFRESH <strong>OR ELSE</strong></button>
           </div>
         </div>
       </div>
@@ -1335,8 +1345,35 @@ See https://github.com/adobe-type-tools/cmap-resources
         }
       });
       for (const content of toc) {
-        $("#toc").append($("<button>").addClass("doc-tab").text(content[0]).attr("data-page", String(content[1])));
+        let checkered = "checked";
+        if (localStorage.getItem(content[0])){
+          checkered = "";
+        } else {
+          $("#toc").append($("<button>").addClass("doc-tab").text(content[0]).attr("data-page", String(content[1])));
+        }
+        $("#checks-goes").append(`<div class="form-check form-switch"><input class="form-check-input" type="checkbox" value="${content[0]}" id="checkNativeSwitch${content[1]}" switch ${checkered}><label class="form-check-label" for="checkNativeSwitch${content[1]}">${content[0]} <strong>OR ELSE</strong></label></div>`)
       }
+      `
+      $("#editorSettingsButton").click(function(){
+        for (const input of $("#checks-goes input")){
+          if (localStorage.getItem(input.value)){
+            input.checked = false;
+          } else {
+            input.checked = true;
+          }
+        }
+      });
+      `
+      $("#close-settings").click(function(){
+        for (const input of $("#checks-goes input")){
+          if (input.checked){
+            localStorage.removeItem(input.value);
+          } else {
+            localStorage.setItem(input.value, "hidden");
+          }
+        }
+        window.location.reload()
+      });
       document.addEventListener("webviewerloaded", function(){
         $(".doc-tab").on("click", function () {
           const page = Number($(this).attr("data-page"));
