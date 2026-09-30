@@ -19476,11 +19476,6 @@ const PDFViewerApplication = {
   },
   setTitle(title = this._title) {
     this._title = title;
-    if (this.isViewerEmbedded) {
-      return;
-    }
-    const hasChangesIndicator = this._hasChanges() && !this.pdfRenderingQueue.printing;
-    document.title = `${hasChangesIndicator ? "* " : ""}${title}`;
   },
   get _docFilename() {
     return this._contentDispositionFilename || getPdfFilenameFromUrl(this.url);
