@@ -18380,7 +18380,7 @@ class Toolbar {
       opts.pageNumber.max = pagesCount;
     }
     if (this.hasPageLabels) {
-      opts.pageNumber.value = this.pageLabel;
+      opts.pageNumber.value = pageNumber;
       opts.numPages.setAttribute("data-l10n-args", JSON.stringify({
         pageNumber,
         pagesCount

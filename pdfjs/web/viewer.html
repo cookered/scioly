@@ -1348,6 +1348,14 @@ See https://github.com/adobe-type-tools/cmap-resources
           }
         }
       });
+      function hidePages(starting, ending){
+        document.querySelectorAll("#viewer .page[data-page-number]").forEach(page => {
+          const pageNumber = Number(page.dataset.pageNumber);
+          if (pageNumber >= starting && pageNumber <= ending) {
+            page.style.visibility = "hidden";
+          }
+        });
+      }
       for (const content of toc) {
         let checkered = "checked";
         if (localStorage.getItem(content[0])){
@@ -1378,7 +1386,20 @@ See https://github.com/adobe-type-tools/cmap-resources
         }
         window.location.reload()
       });
-      document.addEventListener("webviewerloaded", function(){
+      document.addEventListener("webviewerloaded", async function(){
+        await PDFViewerApplication.initializedPromise;
+        PDFViewerApplication.eventBus.on("pagesloaded", () => {
+        for (let i = 0; i < toc.length; i++) {
+          const [title, startPage] = toc[i];
+          if (!localStorage.getItem(title)) continue;
+          const endPage =
+            i + 1 < toc.length
+              ? toc[i + 1][1] - 1
+              : PDFViewerApplication.pdfDocument.numPages;
+          hidePages(startPage, endPage);
+        }
+          PDFViewerApplication.eventBus.dispatch("resize", { source: window });
+        });
         $(".doc-tab").on("click", function () {
           const page = Number($(this).attr("data-page"));
           const pageView = PDFViewerApplication.pdfViewer.getPageView(page - 1);
