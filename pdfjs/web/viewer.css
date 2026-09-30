@@ -6812,6 +6812,7 @@ button.hasPopupMenu{
   --loading-icon:url(images/loading.svg);
   --toolbarButton-editorComment-icon:url(images/comment-editButton.svg);
   --toolbarButton-editorFreeText-icon:url(images/toolbarButton-editorFreeText.svg);
+  --toolbarButton-editorSettings-icon:url(images/toolbarButton-editorSettings.svg);
   --toolbarButton-editorHighlight-icon:url(images/toolbarButton-editorHighlight.svg);
   --toolbarButton-editorInk-icon:url(images/toolbarButton-editorInk.svg);
   --toolbarButton-editorStamp-icon:url(images/toolbarButton-editorStamp.svg);
@@ -7176,7 +7177,6 @@ body{
   -webkit-mask-image:var(--toolbarButton-editorFreeText-icon);
           mask-image:var(--toolbarButton-editorFreeText-icon);
 }
-
 #editorHighlightButton::before{
   -webkit-mask-image:var(--toolbarButton-editorHighlight-icon);
           mask-image:var(--toolbarButton-editorHighlight-icon);
