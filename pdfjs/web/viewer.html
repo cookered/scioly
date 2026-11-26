@@ -66,7 +66,7 @@ See https://github.com/adobe-type-tools/cmap-resources
       <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="staticBackdropLabel">SETTINGS <strong>OR ELSE</strong></h1>
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">SETTINGS</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
@@ -83,8 +83,8 @@ See https://github.com/adobe-type-tools/cmap-resources
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE <strong>OR ELSE</strong></button>
-            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="close-settings">SAVE, CLOSE, AND REFRESH <strong>OR ELSE</strong></button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="close-settings">SAVE, CLOSE, AND REFRESH</button>
           </div>
         </div>
       </div>
@@ -1355,7 +1355,7 @@ See https://github.com/adobe-type-tools/cmap-resources
         } else {
           $("#toc").append($("<button>").addClass("doc-tab").text(content[0]).attr("data-page", String(content[1])));
         }
-        $("#checks-goes").append(`<div class="form-check form-switch"><input class="form-check-input" type="checkbox" value="${content[0]}" id="checkNativeSwitch${content[1]}" switch ${checkered}><label class="form-check-label" for="checkNativeSwitch${content[1]}">${content[0]} <strong>OR ELSE</strong></label></div>`)
+        $("#checks-goes").append(`<div class="form-check form-switch"><input class="form-check-input" type="checkbox" value="${content[0]}" id="checkNativeSwitch${content[1]}" switch ${checkered}><label class="form-check-label" for="checkNativeSwitch${content[1]}">${content[0]}</label></div>`)
       }
       `
       $("#editorSettingsButton").click(function(){
